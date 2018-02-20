@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace DCPPEmergencyMetrics
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Live.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Live : Page
     {
-        public MainWindow()
+        public Live()
         {
             InitializeComponent();
-        }
-
-        private void DrillButton_Click(object sender, RoutedEventArgs e)
-        {
-            Drill drillPage = new Drill();
-            this.Content = drillPage;
-        }
-
-        private void LiveButton_Click(object sender, RoutedEventArgs e)
-        {
-            Live livePage = new Live();
-            this.Content = livePage;
         }
     }
 }

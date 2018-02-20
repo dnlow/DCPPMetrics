@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DCPPEmergencyMetrics"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Diablo Canyon Emergency Metrics" Height="1000" Width="1600">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="DrillButton"
+                Content="Simluated Emergency"
+                Click="DrillButton_Click"
+                ClickMode="Press"
+                Margin="723,294,719,564"
+                Width="150"
+                MaxHeight="30"
+                HorizontalAlignment="Center"
+                Foreground="Gray" Grid.ColumnSpan="2" />
+
+        <Button x:Name="LiveButton"
+                Content="Live Emergency"
+                Click="LiveButton_Click"
+                ClickMode="Press"
+                Margin="723,385,719,473"
+                Width="150"
+                MaxHeight="30"
+                HorizontalAlignment="Center"
+                Foreground="Gray" Grid.ColumnSpan="2" />
     </Grid>
 </Window>
