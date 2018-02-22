@@ -10,3 +10,15 @@ C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetri
 C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.csprojResolveAssemblyReference.cache
 C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.DrillForm.resources
 C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.LiveEmergency.resources
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\bin\Debug\DiabloCanyconEmergencyMetrics.exe.config
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\bin\Debug\DiabloCanyconEmergencyMetrics.exe
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\bin\Debug\DiabloCanyconEmergencyMetrics.pdb
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.csprojResolveAssemblyReference.cache
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.DrillForm.resources
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.LiveEmergency.resources
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.MainWindow.resources
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.Properties.Resources.resources
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.csproj.GenerateResource.Cache
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.csproj.CoreCompileInputs.cache
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.exe
+C:\Users\DNLow\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyconEmergencyMetrics\obj\Debug\DiabloCanyconEmergencyMetrics.pdb
