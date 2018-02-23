@@ -148,7 +148,6 @@ namespace DiabloCanyconEmergencyMetrics.Logic
                     // Add MT3 Data
                     MT3Measurements.Add(timeStamp, GetMeasurementData(values, MT3_4, MT3_5));
 
-
                     // Add MT4 Data
                     MT4Measurements.Add(timeStamp, GetMeasurementData(values, MT4_4, MT4_5));
 

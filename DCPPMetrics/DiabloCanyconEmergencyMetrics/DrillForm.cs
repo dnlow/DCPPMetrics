@@ -28,7 +28,8 @@ namespace DiabloCanyconEmergencyMetrics
 
             if (dataFile.ShowDialog() == DialogResult.OK)
             {
-                new DataProcessor(dataFile.FileName, this);
+                DataProcessor dp = new DataProcessor(dataFile.FileName, this);
+                dp.ReadCSVFile();
             }
             else
             {
