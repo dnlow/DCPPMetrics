@@ -1,4 +1,4 @@
-﻿namespace DiabloCanyconEmergencyMetrics
+﻿namespace DiabloCanyonEmergencyMetrics
 {
     partial class DrillForm
     {

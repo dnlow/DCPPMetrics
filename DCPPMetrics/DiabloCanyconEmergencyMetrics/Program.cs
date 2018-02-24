@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DiabloCanyconEmergencyMetrics
+namespace DiabloCanyonEmergencyMetrics
 {
     static class Program
     {

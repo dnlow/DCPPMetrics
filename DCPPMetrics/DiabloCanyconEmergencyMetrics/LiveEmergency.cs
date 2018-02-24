@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DiabloCanyconEmergencyMetrics
+namespace DiabloCanyonEmergencyMetrics
 {
     public partial class LiveEmergency : Form
     {

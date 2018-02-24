@@ -1,12 +1,14 @@
-﻿using System;
+﻿using DiabloCanyonEmergencyMetrics.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiabloCanyconEmergencyMetrics.Logic
+namespace DiabloCanyonEmergencyMetrics.Logic
 {
     class DataProcessor
     {
@@ -47,49 +49,9 @@ namespace DiabloCanyconEmergencyMetrics.Logic
          * 
          */
 
-        public Dictionary<string, Dictionary<string, Dictionary<string, string>>> ReadCSVFile()
+        public ICollection<Measurement> ReadCSVFile()
         {
-            Dictionary<string, Dictionary<string, Dictionary<string, string>>> metrics =
-                new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
-
-            #region Measurements
-            // Primary Measurements
-            Dictionary<string, Dictionary<string, string>> MT1Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-
-            // Seconday Measurements
-            Dictionary<string, Dictionary<string, string>> MT2Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-
-            // Point Buchon Measurements
-            Dictionary<string, Dictionary<string, string>> MT3Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-
-            // Los Osos Cemetery Measurements
-            Dictionary<string, Dictionary<string, string>> MT4Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-
-            // Foot Hill Measurements
-            Dictionary<string, Dictionary<string, string>> MT5Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-
-            // Service Center Measurements
-            Dictionary<string, Dictionary<string, string>> MT6Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-
-            // Energy Edu.Center Measurements
-            Dictionary<string, Dictionary<string, string>> MT7Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-
-            // Davis Peak Measurements
-            Dictionary<string, Dictionary<string, string>> MT8Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-
-            // Grover Beach Measurements
-            Dictionary<string, Dictionary<string, string>> MT9Measurements =
-                            new Dictionary<string, Dictionary<string, string>>();
-            #endregion
-
+            ICollection<Measurement> measurements = new List<Measurement>();
             Debug.Print("Assigning Column Rows");
 
             using (var reader = new StreamReader(fileName))
@@ -138,47 +100,45 @@ namespace DiabloCanyconEmergencyMetrics.Logic
 
                     // Get Time Stamp
                     string timeStamp = values[0];
+                    DateTime ts;
+
+                    if (!DateTime.TryParseExact(timeStamp, "HH:mm", CultureInfo.InvariantCulture,
+                                                                    DateTimeStyles.None, out ts))
+                    {
+                        Debug.Print("Invalid Time Stamp");
+
+                    }
 
                     // Add MT1 Data
-                    MT1Measurements.Add(timeStamp, GetMeasurementData(values, MT1_3, MT1_1));
+                    measurements.Add(GetMeasurementData(values, MT1_3, MT1_1, ts, Measurement.MeasurementLocation.MT1));
 
                     // Add MT2 Data
-                    MT2Measurements.Add(timeStamp, GetMeasurementData(values, MT2_3, MT2_1));
+                    measurements.Add(GetMeasurementData(values, MT2_3, MT2_1, ts, Measurement.MeasurementLocation.MT2));
 
                     // Add MT3 Data
-                    MT3Measurements.Add(timeStamp, GetMeasurementData(values, MT3_4, MT3_5));
+                    measurements.Add(GetMeasurementData(values, MT3_4, MT3_5, ts, Measurement.MeasurementLocation.MT3));
 
                     // Add MT4 Data
-                    MT4Measurements.Add(timeStamp, GetMeasurementData(values, MT4_4, MT4_5));
+                    measurements.Add(GetMeasurementData(values, MT4_4, MT4_5, ts, Measurement.MeasurementLocation.MT4));
 
                     // Add MT5 Data
-                    MT5Measurements.Add(timeStamp, GetMeasurementData(values, MT5_4, MT5_5));
+                    measurements.Add(GetMeasurementData(values, MT5_4, MT5_5, ts, Measurement.MeasurementLocation.MT5));
 
                     // Add MT6 Data
-                    MT6Measurements.Add(timeStamp, GetMeasurementData(values, MT6_4, MT6_5));
+                    measurements.Add(GetMeasurementData(values, MT6_4, MT6_5, ts, Measurement.MeasurementLocation.MT6));
 
                     // Add MT7 Data
-                    MT7Measurements.Add(timeStamp, GetMeasurementData(values, MT7_4, MT7_5));
+                    measurements.Add(GetMeasurementData(values, MT7_4, MT7_5, ts, Measurement.MeasurementLocation.MT7));
 
                     // Add MT8 Data
-                    MT8Measurements.Add(timeStamp, GetMeasurementData(values, MT8_4, MT8_5));
+                    measurements.Add(GetMeasurementData(values, MT8_4, MT8_5, ts, Measurement.MeasurementLocation.MT8));
 
                     // Add MT9 Data
-                    MT9Measurements.Add(timeStamp, GetMeasurementData(values, MT9_4, MT9_5));
+                    measurements.Add(GetMeasurementData(values, MT9_4, MT9_5, ts, Measurement.MeasurementLocation.MT9));
                 }
-
-                metrics.Add("MT1", MT1Measurements);
-                metrics.Add("MT2", MT2Measurements);
-                metrics.Add("MT3", MT3Measurements);
-                metrics.Add("MT4", MT4Measurements);
-                metrics.Add("MT5", MT5Measurements);
-                metrics.Add("MT6", MT6Measurements);
-                metrics.Add("MT7", MT7Measurements);
-                metrics.Add("MT8", MT8Measurements);
-                metrics.Add("MT9", MT9Measurements);
                 #endregion
             }
-            return metrics;
+            return measurements;
         }
 
         private int GetDataColumns(string[] headerValues, string columnName)
@@ -190,12 +150,14 @@ namespace DiabloCanyconEmergencyMetrics.Logic
             return 0;
         }
 
-        private Dictionary<string, string> GetMeasurementData(string[] values, int windSpeed, int windDirection)
+        private Measurement GetMeasurementData(string[] values, int windSpeed, int windDirection, DateTime ts, Measurement.MeasurementLocation location)
         {
-            Dictionary<string, string> measurements = new Dictionary<string, string>()
-            {
-                { "WS", values[windSpeed] },
-                { "WD", values[windDirection] }
+            Measurement measurements = new Measurement()
+            { 
+               WindSpeed = float.Parse(values[windSpeed]),
+               WindDirection = float.Parse(values[windDirection]),
+               TimeStamp = ts,
+               Location = location
             };
 
             return measurements;

@@ -1,4 +1,4 @@
-﻿using DiabloCanyconEmergencyMetrics.Logic;
+﻿using DiabloCanyonEmergencyMetrics.Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DiabloCanyconEmergencyMetrics
+namespace DiabloCanyonEmergencyMetrics
 {
     public partial class DrillForm : Form
     {

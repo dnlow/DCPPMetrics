@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiabloCanyconEmergencyMetrics.Properties
+namespace DiabloCanyonEmergencyMetrics.Properties
 {
 
 
