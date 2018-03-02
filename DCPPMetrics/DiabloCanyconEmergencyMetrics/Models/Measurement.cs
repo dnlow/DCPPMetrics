@@ -13,10 +13,11 @@ namespace DiabloCanyonEmergencyMetrics.Models
             MT1, MT2, MT3, MT4, MT5, MT6, MT7, MT8, MT9
         };
 
-        public MeasurementLocation Location;
-        public float WindSpeed;
-        public float WindDirection;
-        public DateTime TimeStamp;
+        public MeasurementLocation Location { get; set; }
+        public float WindSpeed { get; set; }
+        public float WindDirection { get; set; }
+        public string TimeStamp { get; set; }
+        public DateTime TimeStampDT;
 
         public Measurement()
         {

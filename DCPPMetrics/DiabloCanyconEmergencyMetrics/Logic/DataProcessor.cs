@@ -21,10 +21,7 @@ namespace DiabloCanyonEmergencyMetrics.Logic
             this.drillForm = drillForm;
         }
 
-        /* Location (Dictionary<string, Dictionary<string, Dictionary<string, float>>>)
-         *     Time Stamp
-         *             Wind Speed, Wind Direction
-         * 
+        /* 
          * MT1 = Primary
          * MT2 = Seconday
          * MT3 = Point Buchon
@@ -35,23 +32,11 @@ namespace DiabloCanyonEmergencyMetrics.Logic
          * MT8 = Davis Peak
          * MT9 = Grover Beach
          * 
-         * { 
-         *      "MT1" : 
-         *              {
-         *                  "0:00" : {
-         *                                  "WindSpeed" : 4,
-         *                                  "WindDirection" : 123.5
-         *              }
-         *      }
-         * }
-         * 
-         * 
-         * 
          */
 
-        public ICollection<Measurement> ReadCSVFile()
+        public List<Measurement> ReadCSVFile()
         {
-            ICollection<Measurement> measurements = new List<Measurement>();
+            List<Measurement> measurements = new List<Measurement>();
             Debug.Print("Assigning Column Rows");
 
             using (var reader = new StreamReader(fileName))
@@ -99,45 +84,81 @@ namespace DiabloCanyonEmergencyMetrics.Logic
                     var values = line.Split(',');
 
                     // Get Time Stamp
-                    string timeStamp = values[0];
                     DateTime ts;
-
-                    if (!DateTime.TryParseExact(timeStamp, "HH:mm", CultureInfo.InvariantCulture,
-                                                                    DateTimeStyles.None, out ts))
+               
+                    if (!DateTime.TryParseExact(values[0], "H:mm", CultureInfo.InvariantCulture,
+                                                                    DateTimeStyles.AssumeLocal, out ts))
                     {
-                        Debug.Print("Invalid Time Stamp");
-
+                        Debug.Print("Invalid Time Stamp {0}", values[0]);
                     }
 
                     // Add MT1 Data
-                    measurements.Add(GetMeasurementData(values, MT1_3, MT1_1, ts, Measurement.MeasurementLocation.MT1));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT1_3, 
+                                                        MT1_1, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT1));
 
                     // Add MT2 Data
-                    measurements.Add(GetMeasurementData(values, MT2_3, MT2_1, ts, Measurement.MeasurementLocation.MT2));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT2_3,
+                                                        MT2_1, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT2));
 
                     // Add MT3 Data
-                    measurements.Add(GetMeasurementData(values, MT3_4, MT3_5, ts, Measurement.MeasurementLocation.MT3));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT3_4, 
+                                                        MT3_5, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT3));
 
                     // Add MT4 Data
-                    measurements.Add(GetMeasurementData(values, MT4_4, MT4_5, ts, Measurement.MeasurementLocation.MT4));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT4_4, 
+                                                        MT4_5, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT4));
 
                     // Add MT5 Data
-                    measurements.Add(GetMeasurementData(values, MT5_4, MT5_5, ts, Measurement.MeasurementLocation.MT5));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT5_4, 
+                                                        MT5_5, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT5));
 
                     // Add MT6 Data
-                    measurements.Add(GetMeasurementData(values, MT6_4, MT6_5, ts, Measurement.MeasurementLocation.MT6));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT6_4, 
+                                                        MT6_5, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT6));
 
                     // Add MT7 Data
-                    measurements.Add(GetMeasurementData(values, MT7_4, MT7_5, ts, Measurement.MeasurementLocation.MT7));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT7_4, 
+                                                        MT7_5, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT7));
 
                     // Add MT8 Data
-                    measurements.Add(GetMeasurementData(values, MT8_4, MT8_5, ts, Measurement.MeasurementLocation.MT8));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT8_4, 
+                                                        MT8_5, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT8));
 
                     // Add MT9 Data
-                    measurements.Add(GetMeasurementData(values, MT9_4, MT9_5, ts, Measurement.MeasurementLocation.MT9));
+                    measurements.Add(GetMeasurementData(values, 
+                                                        MT9_4, 
+                                                        MT9_5, 
+                                                        ts, 
+                                                        Measurement.MeasurementLocation.MT9));
                 }
                 #endregion
             }
+            //PrintMeasurements(measurements);
+
             return measurements;
         }
 
@@ -156,24 +177,30 @@ namespace DiabloCanyonEmergencyMetrics.Logic
             { 
                WindSpeed = float.Parse(values[windSpeed]),
                WindDirection = float.Parse(values[windDirection]),
-               TimeStamp = ts,
+               TimeStamp = ts.TimeOfDay.ToString(),
+               TimeStampDT = ts,
                Location = location
             };
 
             return measurements;
         }
 
-        private void PrintMeasurements(Dictionary<string, Dictionary<string, string>> measurements)
+        private void PrintMeasurements(ICollection<Measurement> measurements)
         {
-            foreach (KeyValuePair<string, Dictionary<string, string>> pair in measurements)
+            foreach (Measurement measurement in measurements)
             {
-                Debug.Print(pair.Key);
-                foreach (KeyValuePair<string, string> measurement in pair.Value)
-                {
-                    Debug.Print(measurement.Key);
-                    Debug.Print(measurement.Value);
-                }
+                Debug.Print("{0}, {1}, {2}, {3}", measurement.Location.ToString(),
+                                                  measurement.TimeStamp.ToString(),
+                                                  measurement.WindDirection.ToString(),
+                                                  measurement.WindSpeed.ToString());                
             }
+        }
+
+        public static List<Measurement> CurrentMeasurements(List<Measurement> allMeasurements)
+        {
+            return allMeasurements.Where(x => x.TimeStampDT.Hour == DateTime.Now.Hour 
+                                               && x.TimeStampDT.Minute == DateTime.Now.Minute)
+                                        .ToList();
         }
 
     }

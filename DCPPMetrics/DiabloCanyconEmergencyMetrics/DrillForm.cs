@@ -1,4 +1,5 @@
 ﻿using DiabloCanyonEmergencyMetrics.Logic;
+using DiabloCanyonEmergencyMetrics.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,9 @@ namespace DiabloCanyonEmergencyMetrics
 {
     public partial class DrillForm : Form
     {
+        List<Measurement> measurements;
+        DateTime previous;
+
         public DrillForm()
         {
             InitializeComponent();
@@ -29,7 +33,9 @@ namespace DiabloCanyonEmergencyMetrics
             if (dataFile.ShowDialog() == DialogResult.OK)
             {
                 DataProcessor dp = new DataProcessor(dataFile.FileName, this);
-                dp.ReadCSVFile();
+                measurements = dp.ReadCSVFile();
+                dataGridView1.DataSource = DataProcessor.CurrentMeasurements(measurements);
+                previous = DateTime.Now;
             }
             else
             {
@@ -37,7 +43,7 @@ namespace DiabloCanyonEmergencyMetrics
                     "Press the 'Back' button and then hit the 'Simulated Emergency' " +
                     "button on the home page.";
                 MessageBox.Show(errorMessage);
-            }
+            } 
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -45,6 +51,15 @@ namespace DiabloCanyonEmergencyMetrics
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (DateTime.Now.Minute - 1 == previous.Minute || DateTime.Now.Hour > previous.Hour)
+            {
+                dataGridView1.DataSource = DataProcessor.CurrentMeasurements(measurements);
+                previous = DateTime.Now;
+            }    
         }
     }
 }
