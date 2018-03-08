@@ -176,7 +176,7 @@ namespace DiabloCanyonEmergencyMetrics.Logic
             Measurement measurements = new Measurement()
             { 
                WindSpeed = float.Parse(values[windSpeed]),
-               WindDirection = float.Parse(values[windDirection]),
+               WindDirection = double.Parse(values[windDirection]),
                TimeStamp = ts.TimeOfDay.ToString(),
                TimeStampDT = ts,
                Location = location

@@ -58,6 +58,7 @@
       <DependentUpon>LiveEmergency.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\DataProcessor.cs" />
+    <Compile Include="Logic\GraphicsProcessing.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
