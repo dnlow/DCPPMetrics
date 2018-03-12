@@ -21,3 +21,4 @@ C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyonEmergencyMetric
 C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyonEmergencyMetrics\bin\Debug\DiabloCanyonEmergencyMetrics.pdb
 C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyonEmergencyMetrics\obj\Debug\DiabloCanyonEmergencyMetrics.exe
 C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyonEmergencyMetrics\obj\Debug\DiabloCanyonEmergencyMetrics.pdb
+C:\Users\SLUGIS\Source\Repos\DCPPMetrics\DCPPMetrics\DiabloCanyonEmergencyMetrics\obj\Debug\DiabloCanyonEmergencyMetrics.csprojResolveAssemblyReference.cache

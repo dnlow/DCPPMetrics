@@ -21,6 +21,8 @@ namespace DiabloCanyonEmergencyMetrics.Models
         public string TimeStamp { get; set; }
         public DateTime TimeStampDT;
         private PointF mLocation;
+        private bool addX = false;
+        private bool addY = false;
 
         public Measurement()
         {
@@ -32,29 +34,43 @@ namespace DiabloCanyonEmergencyMetrics.Models
          */
         internal PointF GetArrowEnd()
         {
+            DetermineHeading();
             float baseX = mLocation.X;
             float baseY = mLocation.Y;
             float hypotenuse = WindSpeed * 50f;
-            float endX = baseX + hypotenuse * (float)Math.Cos(WindDirection - 180.0);
-            float endY = baseY + hypotenuse * (float)Math.Sin(WindDirection - 180.0);
-            Debug.Print("Angle: {0}", WindDirection);
+            float endX = baseX + hypotenuse * (addX ? Math.Abs((float)Math.Cos(WindDirection)) : (float)Math.Cos(WindDirection));
+            float endY = baseY + hypotenuse * (addY ? Math.Abs((float)Math.Sin(WindDirection)) : (float)Math.Sin(WindDirection));
+            Debug.Print("Add X: {0}         Add Y: {1}", addX, addY);
+            Debug.Print("Angle: {0}         Andjusted Angle: {1}", WindDirection, WindDirection - 270.0);
             Debug.Print("Calulated Values: ({0}, {1})", endX - baseX, endY - baseY);
             Debug.Print("Base: ({0}, {1})      Tip: ({2}, {3})", baseX, baseY, endX, endY);
 
             return new PointF(endX, endY);
         }
 
+        internal void DetermineHeading()
+        {
+            if (WindDirection >= 180)
+            {
+                addX = true;
+                if (WindDirection >= 270.0 || WindDirection <= 90.0)
+                {
+                    addY = true;
+                }
+            }
+        }
+
         internal PointF GetArrowBeginning()
         {
-            if (Location == MeasurementLocation.MT1) mLocation = new PointF(2500, 2500);
-            if (Location == MeasurementLocation.MT2) mLocation = new PointF();
-            if (Location == MeasurementLocation.MT3) mLocation = new PointF();
-            if (Location == MeasurementLocation.MT4) mLocation = new PointF();
-            if (Location == MeasurementLocation.MT5) mLocation = new PointF();
-            if (Location == MeasurementLocation.MT6) mLocation = new PointF();
-            if (Location == MeasurementLocation.MT7) mLocation = new PointF();
-            if (Location == MeasurementLocation.MT8) mLocation = new PointF();
-            if (Location == MeasurementLocation.MT9) mLocation = new PointF();
+            if (Location == MeasurementLocation.MT1) mLocation = new PointF(1500, 2500);
+            if (Location == MeasurementLocation.MT2) mLocation = new PointF(1750, 2500);
+            if (Location == MeasurementLocation.MT3) mLocation = new PointF(2000, 2500);
+            if (Location == MeasurementLocation.MT4) mLocation = new PointF(2250, 2500);
+            if (Location == MeasurementLocation.MT5) mLocation = new PointF(2500, 2500);
+            if (Location == MeasurementLocation.MT6) mLocation = new PointF(2750, 2500);
+            if (Location == MeasurementLocation.MT7) mLocation = new PointF(3000, 2500);
+            if (Location == MeasurementLocation.MT8) mLocation = new PointF(3250, 2500);
+            if (Location == MeasurementLocation.MT9) mLocation = new PointF(3500, 2500);
             return mLocation;
         }
 
@@ -62,8 +78,8 @@ namespace DiabloCanyonEmergencyMetrics.Models
         {
             Pen pen = new Pen(Color.Red, 50)
             {
-                StartCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor,
-                EndCap = System.Drawing.Drawing2D.LineCap.RoundAnchor
+                EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor,
+                StartCap = System.Drawing.Drawing2D.LineCap.RoundAnchor
             };
 
             return pen;
