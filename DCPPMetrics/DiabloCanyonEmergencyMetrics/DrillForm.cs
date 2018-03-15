@@ -64,7 +64,7 @@ namespace DiabloCanyonEmergencyMetrics
         {
             dataGridView1.DataSource = DataProcessor.CurrentMeasurements(measurements);
             previous = DateTime.Now;
-            pictureBox1.Image = GraphicsProcessing.DrawMap((List<Measurement>)dataGridView1.DataSource);
+            pictureBox1.Image = GraphicsProcessing.DrawMap((List<Measurement>)dataGridView1.DataSource, this.ClientRectangle.Height);
         }
     }
 }

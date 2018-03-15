@@ -21,12 +21,10 @@ namespace DiabloCanyonEmergencyMetrics.Models
         public string TimeStamp { get; set; }
         public DateTime TimeStampDT;
         private PointF mLocation;
-        private bool addX = false;
-        private bool addY = false;
 
         public Measurement()
         {
-            
+
         }
 
         /**
@@ -34,30 +32,16 @@ namespace DiabloCanyonEmergencyMetrics.Models
          */
         internal PointF GetArrowEnd()
         {
-            DetermineHeading();
             float baseX = mLocation.X;
             float baseY = mLocation.Y;
-            float hypotenuse = WindSpeed * 50f;
-            float endX = baseX + hypotenuse * (addX ? Math.Abs((float)Math.Cos(WindDirection)) : (float)Math.Cos(WindDirection));
-            float endY = baseY + hypotenuse * (addY ? Math.Abs((float)Math.Sin(WindDirection)) : (float)Math.Sin(WindDirection));
-            Debug.Print("Add X: {0}         Add Y: {1}", addX, addY);
-            Debug.Print("Angle: {0}         Andjusted Angle: {1}", WindDirection, WindDirection - 270.0);
-            Debug.Print("Calulated Values: ({0}, {1})", endX - baseX, endY - baseY);
-            Debug.Print("Base: ({0}, {1})      Tip: ({2}, {3})", baseX, baseY, endX, endY);
+
+            float hypotenuse = WindSpeed * 75f;
+
+            float endX = baseX + hypotenuse * (float)Math.Sin(WindDirection);
+            float endY = baseY + hypotenuse * (float)Math.Cos(WindDirection);
+            Debug.Print("{0}", WindDirection);
 
             return new PointF(endX, endY);
-        }
-
-        internal void DetermineHeading()
-        {
-            if (WindDirection >= 180)
-            {
-                addX = true;
-                if (WindDirection >= 270.0 || WindDirection <= 90.0)
-                {
-                    addY = true;
-                }
-            }
         }
 
         internal PointF GetArrowBeginning()
