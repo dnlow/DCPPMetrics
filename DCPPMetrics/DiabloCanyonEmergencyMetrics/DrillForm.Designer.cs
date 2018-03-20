@@ -69,6 +69,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::DiabloCanyonEmergencyMetrics.Properties.Resources.LosOsos_PreAttack;
             this.pictureBox1.Location = new System.Drawing.Point(12, 63);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1156, 858);

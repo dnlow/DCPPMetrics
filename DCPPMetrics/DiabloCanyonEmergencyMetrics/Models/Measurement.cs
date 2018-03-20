@@ -37,12 +37,20 @@ namespace DiabloCanyonEmergencyMetrics.Models
 
             float hypotenuse = WindSpeed * 75f;
 
-            float endX = baseX + hypotenuse * (float)Math.Sin(WindDirection);
-            float endY = baseY + hypotenuse * (float)Math.Cos(WindDirection);
-            Debug.Print("{0}", WindDirection);
+            double theta = WindDirection;
+            double radians = theta * Math.PI / 180.0;
+            float newTheta = (float)Math.Atan(Math.Cos(radians) / Math.Sin(radians));
+
+            float endX = baseX + hypotenuse * -1 * (float)Math.Sin(radians);
+            float endY = baseY + hypotenuse * -1 * (float)Math.Cos(radians);
+            Debug.Print("Theta: {0}", theta);
+            Debug.Print("Theta-Rads: {0}", radians);
+            Debug.Print("newTheta: {0}", newTheta);
+
 
             return new PointF(endX, endY);
         }
+
 
         internal PointF GetArrowBeginning()
         {

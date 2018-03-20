@@ -63,6 +63,16 @@ namespace DiabloCanyonEmergencyMetrics.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _35dGX {
+            get {
+                object obj = ResourceManager.GetObject("35dGX", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LosOsos_PreAttack {
             get {
                 object obj = ResourceManager.GetObject("LosOsos_PreAttack", resourceCulture);
