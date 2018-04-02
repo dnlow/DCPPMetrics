@@ -43,10 +43,6 @@ namespace DiabloCanyonEmergencyMetrics.Models
 
             float endX = baseX + hypotenuse * -1 * (float)Math.Sin(radians);
             float endY = baseY + hypotenuse * -1 * (float)Math.Cos(radians);
-            Debug.Print("Theta: {0}", theta);
-            Debug.Print("Theta-Rads: {0}", radians);
-            Debug.Print("newTheta: {0}", newTheta);
-
 
             return new PointF(endX, endY);
         }

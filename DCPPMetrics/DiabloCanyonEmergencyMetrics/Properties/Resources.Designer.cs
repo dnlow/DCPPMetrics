@@ -73,6 +73,26 @@ namespace DiabloCanyonEmergencyMetrics.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap eoc_tvmap {
+            get {
+                object obj = ResourceManager.GetObject("eoc_tvmap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap eoc_tvmap_archd {
+            get {
+                object obj = ResourceManager.GetObject("eoc_tvmap_archd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LosOsos_PreAttack {
             get {
                 object obj = ResourceManager.GetObject("LosOsos_PreAttack", resourceCulture);

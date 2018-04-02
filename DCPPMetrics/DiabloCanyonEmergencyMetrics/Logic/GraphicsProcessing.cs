@@ -13,7 +13,7 @@ namespace DiabloCanyonEmergencyMetrics.Logic
 {
     public static class GraphicsProcessing
     {
-        public static String baseMapPath = Assembly.GetExecutingAssembly().Location + "\\..\\..\\..\\Resources\\LosOsos_PreAttack.png";
+        public static String baseMapPath = Assembly.GetExecutingAssembly().Location + "\\..\\..\\..\\Resources\\eoc_tvmap_archd.jpg";
 
         public static Bitmap DrawMap(List<Measurement> measurements, float clientRectangleHeight)
         {
@@ -21,16 +21,14 @@ namespace DiabloCanyonEmergencyMetrics.Logic
             Bitmap tempBMP = new Bitmap(bmp.Width, bmp.Height);
 
             Debug.Print("Width: {0}, Height: {1}", tempBMP.Width, tempBMP.Height);
-
+            tempBMP.SetResolution(bmp.HorizontalResolution, bmp.VerticalResolution);
             using (Graphics g = Graphics.FromImage(tempBMP))
             {
                 g.DrawImage(bmp, 0, 0);
                 g.ScaleTransform(1.0F, -1.0F);
                 g.TranslateTransform(0, -tempBMP.Height);
-                g.DrawLine(new Pen(Color.Red, 50), 0, 0, 1500, 1500);
                 foreach (Measurement m in measurements)
                 {
-                    Debug.Print("Drawing Arrow for: " + m.Location);
                     g.DrawLine(m.GetArrow(), m.GetArrowBeginning(), m.GetArrowEnd());
                 }
             }
